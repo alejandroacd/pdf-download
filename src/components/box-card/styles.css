@@ -1,0 +1,7 @@
+.box-card {
+    border:0.1px solid #ccc;
+    width:100%;
+    padding:1em;
+    border-radius: 12px;
+    background: #fff;
+}

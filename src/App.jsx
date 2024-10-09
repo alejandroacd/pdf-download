@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-
+import BoxCard from './components/box-card'
+import BasicInfo from './components/basic-info'
+import LevelsTable from './components/levels-table'
+import html2pdf from 'html2pdf.js'
 function App() {
-  const [count, setCount] = useState(0)
-
+  const download = () => {
+    const element = document.getElementById('report');
+    html2pdf(element, {
+      filename: 'report.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    }).then(() => {
+      console.log('PDF generated successfully')
+    })
+  }
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div id="report" className='main'>
+      <h1>Calibration <span>Report</span></h1>
+      <div className='button-container' data-html2canvas-ignore>
+        <button onClick={download}>
+          &darr; Download
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <BoxCard>
+        <BasicInfo />
+      </BoxCard>
+      <div className="html2pdf__page-break"> </div>
+      <BoxCard>
+        <LevelsTable />
+      </BoxCard>
+     
+    </div>
   )
 }
 

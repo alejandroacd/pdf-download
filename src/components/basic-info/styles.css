@@ -1,0 +1,18 @@
+.basic-info {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap:3em;
+    padding:1em;
+}
+
+.basic-info .calibration-info, .basic-info .dates-info, .basic-info .participants-info {
+    display:flex;
+    flex-direction: column;
+    gap: 5x;
+    max-width: 300px;
+    
+}
+
+
